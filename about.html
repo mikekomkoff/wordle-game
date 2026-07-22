@@ -11,7 +11,7 @@
         if (localStorage.getItem('wordle-colorblind') === 'true') document.body.classList.add('colorblind');
     </script>
     <style>
-        html, body { overflow: auto; height: auto; }
+        html, body { overflow: auto; height: auto; touch-action: pan-y; }
         .about-page { max-width: 600px; margin: 0 auto; padding: 24px 16px 40px; user-select: text; -webkit-user-select: text; }
         .about-page h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 8px; }
         .about-page .subtitle { font-size: 0.9rem; color: var(--text-hint); margin-bottom: 24px; }
