@@ -8,6 +8,7 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         if (localStorage.getItem('wordle-dark') === 'true') document.body.classList.add('dark');
+        if (localStorage.getItem('wordle-colorblind') === 'true') document.body.classList.add('colorblind');
 
         if (window.Telegram && Telegram.WebApp) {
             Telegram.WebApp.expand();
@@ -41,6 +42,7 @@
             <p class="subtitle">Угадай слово</p>
         </div>
         <div class="header-actions">
+            <button id="cb-btn" title="Режим для дальтоников">◉</button>
             <button id="rules-btn" title="Правила">?</button>
             <button id="stats-btn" title="Статистика">Σ</button>
             <button id="theme-btn" title="Тема">🌙</button>
@@ -53,6 +55,7 @@
         <div id="keyboard"></div>
 
         <div class="footer-actions">
+            <button id="cb-btn-mobile" title="Режим для дальтоников">◉</button>
             <button id="rules-btn-mobile" title="Правила">?</button>
             <button id="stats-btn-mobile" title="Статистика">Σ</button>
             <button id="theme-btn-mobile" title="Тема">🌙</button>

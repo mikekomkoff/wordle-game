@@ -36,6 +36,14 @@ body.dark {
     --color-absent: #3a3a3c;
 }
 
+body.colorblind {
+    --color-present: #1a92ff;
+}
+
+body.dark.colorblind {
+    --color-present: #3da5ff;
+}
+
 html, body {
     height: 100%;
     overflow: hidden;

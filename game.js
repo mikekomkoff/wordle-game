@@ -449,16 +449,34 @@ function toggleTheme() {
     document.getElementById('theme-btn-mobile').textContent = icon;
 }
 
+function toggleColorblind() {
+    const isCb = document.body.classList.toggle('colorblind');
+    localStorage.setItem('wordle-colorblind', isCb);
+    document.getElementById('cb-btn').style.opacity = isCb ? '1' : '0.5';
+    document.getElementById('cb-btn-mobile').style.opacity = isCb ? '1' : '0.5';
+}
+
 document.getElementById('rules-btn').addEventListener('click', openRules);
 document.getElementById('rules-btn-mobile').addEventListener('click', openRules);
 document.getElementById('stats-btn').addEventListener('click', openStats);
 document.getElementById('stats-btn-mobile').addEventListener('click', openStats);
 document.getElementById('theme-btn').addEventListener('click', toggleTheme);
 document.getElementById('theme-btn-mobile').addEventListener('click', toggleTheme);
+document.getElementById('cb-btn').addEventListener('click', toggleColorblind);
+document.getElementById('cb-btn-mobile').addEventListener('click', toggleColorblind);
 
 if (document.body.classList.contains('dark')) {
     document.getElementById('theme-btn').textContent = '☀️';
     document.getElementById('theme-btn-mobile').textContent = '☀️';
+}
+
+if (localStorage.getItem('wordle-colorblind') === 'true') {
+    document.body.classList.add('colorblind');
+    document.getElementById('cb-btn').style.opacity = '1';
+    document.getElementById('cb-btn-mobile').style.opacity = '1';
+} else {
+    document.getElementById('cb-btn').style.opacity = '0.5';
+    document.getElementById('cb-btn-mobile').style.opacity = '0.5';
 }
 
 // Клавиатура
