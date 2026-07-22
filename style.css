@@ -46,11 +46,11 @@ body.dark.colorblind {
 
 html, body {
     height: 100%;
-    overflow: hidden;
+    overflow: auto;
     font-family: var(--font);
     background: var(--bg);
     color: var(--text);
-    touch-action: none;
+    touch-action: pan-y;
     overscroll-behavior: none;
     transition: background 0.2s, color 0.2s;
     padding-top: env(safe-area-inset-top);
@@ -639,7 +639,9 @@ main {
 
 .site-footer {
     text-align: center;
-    padding: 8px 0 4px;
+    padding: 10px 0 16px;
+    flex-shrink: 0;
+    width: 100%;
 }
 
 .site-footer a {
