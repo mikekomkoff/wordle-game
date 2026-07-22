@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>О проекте – ВОРДЛИ</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        if (localStorage.getItem('wordle-dark') === 'true') document.body.classList.add('dark');
+        if (localStorage.getItem('wordle-colorblind') === 'true') document.body.classList.add('colorblind');
+    </script>
+    <style>
+        .about-page { max-width: 600px; margin: 0 auto; padding: 24px 16px 40px; user-select: text; -webkit-user-select: text; }
+        .about-page h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 8px; }
+        .about-page .subtitle { font-size: 0.9rem; color: var(--text-hint); margin-bottom: 24px; }
+        .about-page h2 { font-size: 1.1rem; font-weight: 700; margin: 24px 0 10px; }
+        .about-page p { font-size: 0.92rem; line-height: 1.6; margin-bottom: 12px; color: var(--text); }
+        .about-page ul { margin: 0 0 12px 20px; font-size: 0.92rem; line-height: 1.8; color: var(--text); }
+        .about-page .tile-example { display: inline-flex; gap: 4px; margin: 8px 0 16px; }
+        .about-page .tile-example span { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 6px; font-weight: 700; font-size: 1rem; color: #fff; }
+        .about-page .link-card { display: block; background: var(--bg-secondary); border-radius: 12px; padding: 16px; margin-top: 16px; text-decoration: none; color: var(--text); transition: opacity 0.15s; }
+        .about-page .link-card:active { opacity: 0.7; }
+        .about-page .link-card .link-title { font-weight: 700; font-size: 1rem; margin-bottom: 4px; }
+        .about-page .link-card .link-desc { font-size: 0.82rem; color: var(--text-hint); }
+        .about-page .back-link { display: inline-block; margin-top: 24px; color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+        .breadcrumbs { display: flex; align-items: center; gap: 6px; margin-bottom: 16px; font-size: 0.82rem; }
+        .breadcrumbs a { color: var(--accent); text-decoration: none; }
+        .breadcrumbs a:active { opacity: 0.7; }
+        .breadcrumbs span { color: var(--text-hint); }
+        .cta-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 12px; background: var(--accent); color: #fff; font-size: 17px; font-weight: 600; border: none; cursor: pointer; transition: opacity 0.2s; text-decoration: none; }
+        .cta-btn:active { opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <div class="about-page">
+        <nav class="breadcrumbs">
+            <a href="index.html">Вордли</a>
+            <span>/</span>
+            <span>О проекте</span>
+        </nav>
+        <h1>ВОРДЛИ</h1>
+        <p class="subtitle">Русская версия игры Wordle</p>
+
+        <h2>Что такое Вордли?</h2>
+        <p>Вордли – это словесная игра, в которой нужно угадать загаданное 5-буквенное слово за 6 попыток. Каждый день появляется новое слово, одинаковое для всех игроков.</p>
+        <p>Оригинальная игра Wordle была создана программистом <strong>Джошем Уордлом</strong> (Josh Wardle) в 2021 году и быстро стала одним из самых популярных словесных игр в мире. Вордли – это русскоязычная адаптация.</p>
+
+        <h2>Правила</h2>
+        <ul>
+            <li>Введите любое 5-буквенное русское слово</li>
+            <li>После каждой попытки буквы подсветятся цветом</li>
+            <li>Подсказки помогут сузить круг вариантов</li>
+            <li>Угадайте слово за 6 попыток</li>
+            <li>Новое слово каждую полночь</li>
+        </ul>
+
+        <h2>Значение цветов</h2>
+
+        <p><strong>Синий</strong> – буква на правильном месте</p>
+        <div class="tile-example">
+            <span style="background: var(--color-correct);">В</span>
+            <span style="background: var(--bg-secondary); color: var(--text);">О</span>
+            <span style="background: var(--bg-secondary); color: var(--text);">Р</span>
+            <span style="background: var(--bg-secondary); color: var(--text);">Д</span>
+            <span style="background: var(--bg-secondary); color: var(--text);">Л</span>
+        </div>
+
+        <p><strong>Оранжевый</strong> – буква есть в слове, но не на своём месте</p>
+        <div class="tile-example">
+            <span style="background: var(--bg-secondary); color: var(--text);">К</span>
+            <span style="background: var(--color-present);">О</span>
+            <span style="background: var(--bg-secondary); color: var(--text);">Т</span>
+            <span style="background: var(--color-present);">И</span>
+            <span style="background: var(--bg-secondary); color: var(--text);">К</span>
+        </div>
+
+        <p><strong>Серый</strong> – буквы нет в слове</p>
+        <div class="tile-example">
+            <span style="background: var(--color-absent);">М</span>
+            <span style="background: var(--color-absent);">Я</span>
+            <span style="background: var(--color-absent);">Ч</span>
+            <span style="background: var(--color-absent);">О</span>
+            <span style="background: var(--color-absent);">К</span>
+        </div>
+
+        <h2>Возможности</h2>
+        <ul>
+            <li>Тёмная и светлая тема</li>
+            <li>Режим для дальтоников</li>
+            <li>Статистика игр</li>
+            <li>Поделиться результатом</li>
+            <li>Работает оффлайн</li>
+        </ul>
+
+        <a class="link-card" href="https://t.me/filwordgame_bot" target="_blank">
+            <div class="link-title">Филворды</div>
+            <div class="link-desc">Ещё одна словесная игра в Telegram</div>
+        </a>
+
+        <a class="back-link" href="index.html">← Назад к игре</a>
+
+        <div style="text-align:center; padding: 24px 0 8px;">
+            <a href="index.html" class="cta-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Играть в Вордли
+            </a>
+        </div>
+    </div>
+</body>
+</html>

@@ -389,13 +389,6 @@ function loadStats() {
 }
 
 function checkDailyGame() {
-    const lastPlayed = localStorage.getItem('wordle_last_played');
-    const today = new Date().toDateString();
-    if (lastPlayed === today) {
-        gameOver = true;
-        showMessage('Вы уже играли сегодня. Заходите завтра!');
-        showShareButton();
-    }
 }
 
 function shareResult() {
@@ -406,20 +399,31 @@ function shareResult() {
         });
         text += '\n';
     });
+    text += '\nhttps://t.me/wordlegameru_bot';
 
-    if (window.Telegram && Telegram.WebApp && Telegram.WebApp.switchInlineQuery) {
-        Telegram.WebApp.switchInlineQuery(text, ['users', 'groups', 'channels']);
-    } else if (navigator.share) {
+    const btn = document.getElementById('share-bottom');
+
+    if (navigator.share) {
         navigator.share({ text }).catch(() => {
-            navigator.clipboard.writeText(text).then(() => {
-                showMessage('Результат скопирован!');
-            });
+            copyToClipboard(text, btn);
         });
     } else {
-        navigator.clipboard.writeText(text).then(() => {
-            showMessage('Результат скопирован!');
-        });
+        copyToClipboard(text, btn);
     }
+}
+
+function copyToClipboard(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+        showMessage('Результат скопирован!');
+    }).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showMessage('Результат скопирован!');
+    });
 }
 
 function showShareButton() {
@@ -515,6 +519,11 @@ function setupNewWordNotification() {
     const today = new Date().toDateString();
     if (lastPlayed === today) return;
 
+    if (Notification.permission === 'denied') return;
+
+    const shown = localStorage.getItem('wordle_notif_shown');
+    if (shown === today) return;
+
     const asked = localStorage.getItem('wordle_notif_asked');
     if (!asked) {
         setTimeout(() => {
@@ -529,21 +538,8 @@ function setupNewWordNotification() {
 }
 
 function showNewWordNotification() {
-    const lastPlayed = localStorage.getItem('wordle_last_played');
     const today = new Date().toDateString();
-    if (lastPlayed === today) return;
-
-    if (swRegistration && swRegistration.active) {
-        const now = new Date();
-        const midnight = new Date(now);
-        midnight.setHours(24, 0, 0, 0);
-        const delay = midnight - now;
-
-        swRegistration.active.postMessage({
-            type: 'SCHEDULE_NOTIFICATION',
-            delay: delay
-        });
-    }
+    localStorage.setItem('wordle_notif_shown', today);
 
     new Notification('Вордли', {
         body: 'Новое слово дня уже ждёт тебя!',
@@ -552,3 +548,32 @@ function showNewWordNotification() {
 }
 
 setupNewWordNotification();
+
+// Сброс кеша Telegram Mini App
+function resetTelegramCache() {
+    if (window.Telegram && Telegram.WebApp) {
+        localStorage.removeItem('wordle_version');
+        localStorage.removeItem('wordle_stats');
+        localStorage.removeItem('wordle_last_played');
+        localStorage.removeItem('wordle_notif_asked');
+        localStorage.removeItem('wordle_notif_shown');
+        localStorage.removeItem('wordle-dark');
+        localStorage.removeItem('wordle-colorblind');
+
+        if ('caches' in window) {
+            caches.keys().then(names => {
+                names.forEach(name => caches.delete(name));
+            });
+        }
+
+        if (navigator.serviceWorker) {
+            navigator.serviceWorker.getRegistrations().then(regs => {
+                regs.forEach(reg => reg.unregister());
+            });
+        }
+
+        Telegram.WebApp.close();
+    }
+}
+
+// Вызов: resetTelegramCache() в консоли или через Telegram WebApp

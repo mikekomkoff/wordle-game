@@ -637,6 +637,27 @@ main {
     font-size: 0.95rem;
 }
 
+.site-footer {
+    text-align: center;
+    padding: 8px 0 4px;
+}
+
+.site-footer a {
+    color: var(--text-hint);
+    text-decoration: none;
+    font-size: 0.78rem;
+    transition: color 0.15s;
+}
+
+.site-footer a:active {
+    color: var(--accent);
+}
+
+.footer-sep {
+    color: var(--text-hint);
+    margin: 0 6px;
+}
+
 /* Responsive */
 @media (max-width: 500px) {
     .header-actions {
