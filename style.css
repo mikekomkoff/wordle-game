@@ -45,6 +45,8 @@ html, body {
     touch-action: none;
     overscroll-behavior: none;
     transition: background 0.2s, color 0.2s;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
 body {

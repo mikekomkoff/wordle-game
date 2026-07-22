@@ -400,9 +400,19 @@ function shareResult() {
         text += '\n';
     });
 
-    navigator.clipboard.writeText(text).then(() => {
-        showMessage('Результат скопирован!');
-    });
+    if (window.Telegram && Telegram.WebApp && Telegram.WebApp.switchInlineQuery) {
+        Telegram.WebApp.switchInlineQuery(text, ['users', 'groups', 'channels']);
+    } else if (navigator.share) {
+        navigator.share({ text }).catch(() => {
+            navigator.clipboard.writeText(text).then(() => {
+                showMessage('Результат скопирован!');
+            });
+        });
+    } else {
+        navigator.clipboard.writeText(text).then(() => {
+            showMessage('Результат скопирован!');
+        });
+    }
 }
 
 function showShareButton() {

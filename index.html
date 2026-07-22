@@ -2,10 +2,37 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Вордли — угадай слово дня</title>
     <link rel="stylesheet" href="style.css">
-    <script>if (localStorage.getItem('wordle-dark') === 'true') document.body.classList.add('dark');</script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        if (localStorage.getItem('wordle-dark') === 'true') document.body.classList.add('dark');
+
+        if (window.Telegram && Telegram.WebApp) {
+            Telegram.WebApp.expand();
+            Telegram.WebApp.setHeaderColor('#ffffff');
+            Telegram.WebApp.setBackgroundColor('#ffffff');
+
+            const tg = Telegram.WebApp;
+            if (tg.colorScheme === 'dark') {
+                document.body.classList.add('dark');
+                tg.setHeaderColor('#121213');
+                tg.setBackgroundColor('#121213');
+            }
+
+            const themeParams = tg.themeParams;
+            if (themeParams) {
+                const root = document.documentElement;
+                if (themeParams.bg_color) root.style.setProperty('--bg', themeParams.bg_color);
+                if (themeParams.text_color) root.style.setProperty('--text', themeParams.text_color);
+                if (themeParams.button_color) root.style.setProperty('--accent', themeParams.button_color);
+                if (themeParams.button_text_color) root.style.setProperty('--accent-text', themeParams.button_text_color);
+                if (themeParams.secondary_bg_color) root.style.setProperty('--bg-secondary', themeParams.secondary_bg_color);
+                if (themeParams.hint_color) root.style.setProperty('--text-hint', themeParams.hint_color);
+            }
+        }
+    </script>
 </head>
 <body>
     <header>
