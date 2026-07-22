@@ -389,6 +389,13 @@ function loadStats() {
 }
 
 function checkDailyGame() {
+    const lastPlayed = localStorage.getItem('wordle_last_played');
+    const today = new Date().toDateString();
+    if (lastPlayed === today) {
+        gameOver = true;
+        showMessage('Вы уже играли сегодня. Заходите завтра!');
+        showShareButton();
+    }
 }
 
 function shareResult() {
@@ -471,3 +478,59 @@ document.addEventListener('keydown', (e) => {
 // Запуск
 init();
 runTests();
+
+// Service Worker
+let swRegistration = null;
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').then(reg => {
+        swRegistration = reg;
+    }).catch(() => {});
+}
+
+// Уведомления о новом слове
+function setupNewWordNotification() {
+    if (!('Notification' in window)) return;
+    if (gameOver) return;
+
+    const lastPlayed = localStorage.getItem('wordle_last_played');
+    const today = new Date().toDateString();
+    if (lastPlayed === today) return;
+
+    const asked = localStorage.getItem('wordle_notif_asked');
+    if (!asked) {
+        setTimeout(() => {
+            Notification.requestPermission().then(perm => {
+                localStorage.setItem('wordle_notif_asked', '1');
+                if (perm === 'granted') showNewWordNotification();
+            });
+        }, 3000);
+    } else if (Notification.permission === 'granted') {
+        showNewWordNotification();
+    }
+}
+
+function showNewWordNotification() {
+    const lastPlayed = localStorage.getItem('wordle_last_played');
+    const today = new Date().toDateString();
+    if (lastPlayed === today) return;
+
+    if (swRegistration && swRegistration.active) {
+        const now = new Date();
+        const midnight = new Date(now);
+        midnight.setHours(24, 0, 0, 0);
+        const delay = midnight - now;
+
+        swRegistration.active.postMessage({
+            type: 'SCHEDULE_NOTIFICATION',
+            delay: delay
+        });
+    }
+
+    new Notification('Вордли', {
+        body: 'Новое слово дня уже ждёт тебя!',
+        icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🟦</text></svg>'
+    });
+}
+
+setupNewWordNotification();
