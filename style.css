@@ -130,6 +130,9 @@ header h1 {
     justify-content: center;
     gap: 8px;
     padding: 4px 0;
+    width: 100%;
+    max-width: 500px;
+    flex-shrink: 0;
 }
 
 .footer-actions button {
