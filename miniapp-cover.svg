@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#40a7e3"/>
+      <stop offset="100%" style="stop-color:#2b8bc4"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="640" height="360" fill="url(#bg)"/>
+  
+  <!-- Left side: tile grid -->
+  <g transform="translate(40, 55)">
+    <!-- Row 1 -->
+    <rect x="0" y="0" width="48" height="48" rx="6" fill="#fff" opacity="0.25"/>
+    <rect x="56" y="0" width="48" height="48" rx="6" fill="#fff" opacity="0.25"/>
+    <rect x="112" y="0" width="48" height="48" rx="6" fill="#fff" opacity="0.25"/>
+    <rect x="168" y="0" width="48" height="48" rx="6" fill="#fff" opacity="0.25"/>
+    <rect x="224" y="0" width="48" height="48" rx="6" fill="#fff" opacity="0.25"/>
+    
+    <!-- Row 2 -->
+    <rect x="0" y="56" width="48" height="48" rx="6" fill="#fff" opacity="0.25"/>
+    <rect x="56" y="56" width="48" height="48" rx="6" fill="#fff" opacity="0.25"/>
+    <rect x="112" y="56" width="48" height="48" rx="6" fill="#fff" opacity="0.25"/>
+    <rect x="168" y="56" width="48" height="48" rx="6" fill="#fff" opacity="0.25"/>
+    <rect x="224" y="56" width="48" height="48" rx="6" fill="#fff" opacity="0.25"/>
+    
+    <!-- Row 3 - highlighted -->
+    <rect x="0" y="112" width="48" height="48" rx="6" fill="#fff"/>
+    <rect x="56" y="112" width="48" height="48" rx="6" fill="#d4956b"/>
+    <rect x="112" y="112" width="48" height="48" rx="6" fill="#fff"/>
+    <rect x="168" y="112" width="48" height="48" rx="6" fill="#fff"/>
+    <rect x="224" y="112" width="48" height="48" rx="6" fill="#fff"/>
+    
+    <!-- Row 4 -->
+    <rect x="0" y="168" width="48" height="48" rx="6" fill="#fff" opacity="0.25"/>
+    <rect x="56" y="168" width="48" height="48" rx="6" fill="#fff" opacity="0.25"/>
+    <rect x="112" y="168" width="48" height="48" rx="6" fill="#fff" opacity="0.25"/>
+    <rect x="168" y="168" width="48" height="48" rx="6" fill="#fff" opacity="0.25"/>
+    <rect x="224" y="168" width="48" height="48" rx="6" fill="#fff" opacity="0.25"/>
+    
+    <!-- Row 5 - correct -->
+    <rect x="0" y="224" width="48" height="48" rx="6" fill="#fff"/>
+    <rect x="56" y="224" width="48" height="48" rx="6" fill="#fff"/>
+    <rect x="112" y="224" width="48" height="48" rx="6" fill="#fff"/>
+    <rect x="168" y="224" width="48" height="48" rx="6" fill="#fff"/>
+    <rect x="224" y="224" width="48" height="48" rx="6" fill="#fff"/>
+  </g>
+  
+  <!-- Right side: text -->
+  <text x="460" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="56" fill="#fff" letter-spacing="4">ВОРДЛИ</text>
+  <text x="460" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#fff" opacity="0.8" letter-spacing="1">Угадай слово</text>
+  
+  <rect x="400" y="200" width="120" height="2" rx="1" fill="#fff" opacity="0.4"/>
+  
+  <text x="460" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#fff" opacity="0.6">5 букв · 6 попыток · 1 слово в день</text>
+</svg>
