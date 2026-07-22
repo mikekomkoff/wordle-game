@@ -5,7 +5,7 @@
 ## Играй
 
 - **Локально:** открой `index.html` в браузере
-- **Telegram Mini App:** подключи как WebApp к боту
+- **Telegram Mini App:** подключись к [боту](https://t.me/wordlegameru_bot)
 
 ## Как играть
 
@@ -19,7 +19,6 @@
 
 ## Возможности
 
-- 174 русских слова в словаре
 - Тёмная и светлая тема
 - Статистика игр
 - Поделиться результатом
@@ -41,15 +40,6 @@
 ├── miniapp-cover.svg   # Обложка Mini App (640×360)
 └── miniapp-cover.png   # Обложка PNG
 ```
-
-## Telegram Bot
-
-Для подключения как Telegram Mini App:
-
-1. Создай бота через [@BotFather](https://t.me/BotFather)
-2. Настрой WebApp URL в настройках бота
-3. Используй `bot-avatar.png` как аватар
-4. Используй `miniapp-cover.png` как обложку Mini App
 
 ## Технологии
 
