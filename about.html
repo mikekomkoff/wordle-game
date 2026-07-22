@@ -29,6 +29,9 @@
         .breadcrumbs a { color: var(--accent); text-decoration: none; }
         .breadcrumbs a:active { opacity: 0.7; }
         .breadcrumbs span { color: var(--text-hint); }
+        .sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; text-align: center; padding: 12px 16px; background: var(--bg); border-top: 1px solid var(--bg-secondary); z-index: 100; transition: transform 0.3s, opacity 0.3s; }
+        .sticky-cta.hidden-cta { transform: translateY(100%); opacity: 0; pointer-events: none; }
+        .cta-inline { text-align: center; padding: 24px 0 8px; }
         .cta-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 12px; background: var(--accent); color: #fff; font-size: 17px; font-weight: 600; border: none; cursor: pointer; transition: opacity 0.2s; text-decoration: none; }
         .cta-btn:active { opacity: 0.8; }
     </style>
@@ -101,16 +104,47 @@
 
         <a class="back-link" href="index.html">← Назад к игре</a>
 
-        <div style="text-align:center; padding: 24px 0 8px;">
+        <div class="cta-inline">
             <a href="index.html" class="cta-btn">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                     <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                Играть в Вордли
+                Играть в вордли
             </a>
         </div>
+    </div>
+
+    <div class="sticky-cta" id="sticky-cta">
+        <a href="index.html" class="cta-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Играть в вордли
+        </a>
+    </div>
+
+    <script>
+        (function() {
+            var cta = document.getElementById('sticky-cta');
+            var lastScroll = 0;
+            window.addEventListener('scroll', function() {
+                var scrollTop = window.scrollY || document.documentElement.scrollTop;
+                var scrollHeight = document.documentElement.scrollHeight;
+                var clientHeight = document.documentElement.clientHeight;
+                var atBottom = scrollTop + clientHeight >= scrollHeight - 60;
+                if (atBottom) {
+                    cta.classList.add('hidden-cta');
+                } else {
+                    cta.classList.remove('hidden-cta');
+                }
+                lastScroll = scrollTop;
+            });
+        })();
+    </script>
     </div>
 </body>
 </html>
