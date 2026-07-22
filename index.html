@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вордли — угадай слово дня</title>
+    <link rel="stylesheet" href="style.css">
+    <script>if (localStorage.getItem('wordle-dark') === 'true') document.body.classList.add('dark');</script>
+</head>
+<body>
+    <header>
+        <div class="header-title">
+            <h1>ВОРДЛИ</h1>
+            <p class="subtitle">Угадай слово</p>
+        </div>
+        <div class="header-actions">
+            <button id="rules-btn" title="Правила">?</button>
+            <button id="stats-btn" title="Статистика">Σ</button>
+            <button id="theme-btn" title="Тема">🌙</button>
+        </div>
+    </header>
+
+    <main>
+        <div id="game-board"></div>
+
+        <div id="keyboard"></div>
+
+        <div class="footer-actions">
+            <button id="rules-btn-mobile" title="Правила">?</button>
+            <button id="stats-btn-mobile" title="Статистика">Σ</button>
+            <button id="theme-btn-mobile" title="Тема">🌙</button>
+        </div>
+
+        <button id="share-bottom" class="btn share-btn hidden" onclick="shareResult()">Поделиться</button>
+
+        <div id="message" class="message hidden"></div>
+    </main>
+
+    <!-- Правила -->
+    <div id="rules-modal" class="modal hidden">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2>Правила игры</h2>
+            <p>Угадайте загаданное слово дня в игре <strong>Вордли</strong> с шести попыток.</p>
+            <p>После каждой попытки цвет букв будет меняться, чтобы показать, какие буквы есть в загаданном слове!</p>
+            <div class="examples">
+                <div class="example">
+                    <span class="tile correct">В</span>
+                    <span class="tile absent">О</span>
+                    <span class="tile absent">Р</span>
+                    <span class="tile absent">Д</span>
+                    <span class="tile absent">Л</span>
+                    <span>— Буква <strong>В</strong> есть в слове и стоит на правильном месте</span>
+                </div>
+                <div class="example">
+                    <span class="tile absent">К</span>
+                    <span class="tile present">О</span>
+                    <span class="tile absent">Т</span>
+                    <span class="tile present">И</span>
+                    <span class="tile absent">К</span>
+                    <span>— Буквы <strong>О</strong> и <strong>И</strong> есть в слове, но стоят не на своих местах</span>
+                </div>
+                <div class="example">
+                    <span class="tile absent">М</span>
+                    <span class="tile absent">Я</span>
+                    <span class="tile absent">Ч</span>
+                    <span class="tile absent">О</span>
+                    <span class="tile absent">К</span>
+                    <span>— Ни одна из букв не встречается в загаданном слове</span>
+                </div>
+            </div>
+            <p>Если слово угадано правильно, то все буквы будут выделены зелёным!</p>
+            <p>Каждый день загадывается новое слово!</p>
+        </div>
+    </div>
+
+    <!-- Статистика -->
+    <div id="stats-modal" class="modal hidden">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2>Статистика</h2>
+            <div class="stats-grid">
+                <div class="stat">
+                    <span class="stat-number" id="games-played">0</span>
+                    <span class="stat-label">Игр</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="win-rate">0%</span>
+                    <span class="stat-label">Побед</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="current-streak">0</span>
+                    <span class="stat-label">Серия</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="max-streak">0</span>
+                    <span class="stat-label">Макс</span>
+                </div>
+            </div>
+            <div class="guess-distribution">
+                <h3>Распределение догадок</h3>
+                <div id="distribution-bars"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Результат -->
+    <div id="result-modal" class="modal hidden">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div id="result-content"></div>
+            <button id="share-btn" class="btn" onclick="shareResult()">Поделиться</button>
+        </div>
+    </div>
+
+    <script src="words.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
