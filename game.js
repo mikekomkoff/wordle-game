@@ -317,7 +317,7 @@ function showResult(won) {
 
     content.innerHTML = html;
     modal.classList.remove('hidden');
-    if (won) showShareButton();
+    showShareButton();
 }
 
 function getAttemptWord(n) {

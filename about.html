@@ -4,11 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>О проекте – ВОРДЛИ</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=5">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
-        if (localStorage.getItem('wordle-dark') === 'true') document.body.classList.add('dark');
         if (localStorage.getItem('wordle-colorblind') === 'true') document.body.classList.add('colorblind');
+
+        if (window.Telegram && Telegram.WebApp) {
+            Telegram.WebApp.expand();
+            const tg = Telegram.WebApp;
+            if (tg.colorScheme === 'dark') {
+                document.body.classList.add('dark');
+            }
+            const themeParams = tg.themeParams;
+            if (themeParams) {
+                const root = document.documentElement;
+                if (themeParams.bg_color) root.style.setProperty('--bg', themeParams.bg_color);
+                if (themeParams.text_color) root.style.setProperty('--text', themeParams.text_color);
+                if (themeParams.button_color) root.style.setProperty('--accent', themeParams.button_color);
+                if (themeParams.button_text_color) root.style.setProperty('--accent-text', themeParams.button_text_color);
+                if (themeParams.secondary_bg_color) root.style.setProperty('--bg-secondary', themeParams.secondary_bg_color);
+                if (themeParams.hint_color) root.style.setProperty('--text-hint', themeParams.hint_color);
+            }
+        } else {
+            if (localStorage.getItem('wordle-dark') === 'true') {
+                document.body.classList.add('dark');
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.body.classList.add('dark');
+            }
+        }
     </script>
     <style>
         html, body { overflow: auto !important; height: auto !important; touch-action: pan-y !important; overscroll-behavior: auto !important; }
@@ -145,6 +168,5 @@
             });
         })();
     </script>
-    </div>
 </body>
 </html>
