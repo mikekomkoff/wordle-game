@@ -7,13 +7,13 @@
 }
 
 :root {
-    --accent: #40a7e3;
-    --accent-text: #ffffff;
-    --bg: #ffffff;
-    --bg-secondary: #f0f0f0;
-    --text: #000000;
-    --text-hint: #999999;
-    --section-bg: #ffffff;
+    --tg-theme-bg-color: #ffffff;
+    --tg-theme-text-color: #000000;
+    --tg-theme-button-color: #40a7e3;
+    --tg-theme-button-text-color: #ffffff;
+    --tg-theme-secondary-bg-color: #f0f0f0;
+    --tg-theme-hint-color: #999999;
+    --tg-theme-section-bg-color: #ffffff;
     --color-correct: #40a7e3;
     --color-present: #d4956b;
     --color-absent: #787c7e;
@@ -25,31 +25,16 @@
     --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-body.dark {
-    --accent: #40a7e3;
-    --bg: #121213;
-    --bg-secondary: #2a2a2c;
-    --text: #ffffff;
-    --text-hint: #818384;
-    --section-bg: #1a1a1b;
-    --color-present: #b07840;
-    --color-absent: #3a3a3c;
-}
-
 body.colorblind {
     --color-present: #1a92ff;
-}
-
-body.dark.colorblind {
-    --color-present: #3da5ff;
 }
 
 html, body {
     height: 100%;
     overflow: auto;
     font-family: var(--font);
-    background: var(--bg);
-    color: var(--text);
+    background: var(--tg-theme-bg-color);
+    color: var(--tg-theme-text-color);
     touch-action: pan-y;
     overscroll-behavior: none;
     transition: background 0.2s, color 0.2s;
@@ -93,7 +78,7 @@ header h1 {
 
 .subtitle {
     font-size: 0.65rem;
-    color: var(--text-hint);
+    color: var(--tg-theme-hint-color);
     letter-spacing: 0.5px;
     margin-top: 1px;
 }
@@ -110,8 +95,8 @@ header h1 {
     height: 32px;
     border: none;
     border-radius: 50%;
-    background: var(--bg-secondary);
-    color: var(--text);
+    background: var(--tg-theme-secondary-bg-color);
+    color: var(--tg-theme-text-color);
     font-size: 0.9rem;
     cursor: pointer;
     display: flex;
@@ -140,8 +125,8 @@ header h1 {
     height: 36px;
     border: none;
     border-radius: 50%;
-    background: var(--bg-secondary);
-    color: var(--text);
+    background: var(--tg-theme-secondary-bg-color);
+    color: var(--tg-theme-text-color);
     font-size: 1rem;
     cursor: pointer;
     display: flex;
@@ -185,21 +170,21 @@ main {
 .tile {
     width: var(--tile-size);
     height: var(--tile-size);
-    border: 2px solid var(--bg-secondary);
+    border: 2px solid var(--tg-theme-secondary-bg-color);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.8rem;
     font-weight: 700;
     text-transform: uppercase;
-    color: var(--text);
+    color: var(--tg-theme-text-color);
     border-radius: 6px;
-    background: var(--bg-secondary);
+    background: var(--tg-theme-secondary-bg-color);
     transition: transform 0.1s, border-color 0.1s, background 0.15s;
 }
 
 .tile.filled {
-    border-color: var(--accent);
+    border-color: var(--tg-theme-button-color);
     animation: pop 0.1s ease-out;
 }
 
@@ -250,20 +235,20 @@ main {
 }
 
 @keyframes flip-correct {
-    0% { background: var(--bg-secondary); border-color: var(--bg-secondary); transform: rotateX(0deg); }
-    50% { background: var(--bg-secondary); border-color: var(--bg-secondary); transform: rotateX(90deg); }
+    0% { background: var(--tg-theme-secondary-bg-color); border-color: var(--tg-theme-secondary-bg-color); transform: rotateX(0deg); }
+    50% { background: var(--tg-theme-secondary-bg-color); border-color: var(--tg-theme-secondary-bg-color); transform: rotateX(90deg); }
     100% { background: var(--color-correct); border-color: var(--color-correct); transform: rotateX(0deg); }
 }
 
 @keyframes flip-present {
-    0% { background: var(--bg-secondary); border-color: var(--bg-secondary); transform: rotateX(0deg); }
-    50% { background: var(--bg-secondary); border-color: var(--bg-secondary); transform: rotateX(90deg); }
+    0% { background: var(--tg-theme-secondary-bg-color); border-color: var(--tg-theme-secondary-bg-color); transform: rotateX(0deg); }
+    50% { background: var(--tg-theme-secondary-bg-color); border-color: var(--tg-theme-secondary-bg-color); transform: rotateX(90deg); }
     100% { background: var(--color-present); border-color: var(--color-present); transform: rotateX(0deg); }
 }
 
 @keyframes flip-absent {
-    0% { background: var(--bg-secondary); border-color: var(--bg-secondary); transform: rotateX(0deg); }
-    50% { background: var(--bg-secondary); border-color: var(--bg-secondary); transform: rotateX(90deg); }
+    0% { background: var(--tg-theme-secondary-bg-color); border-color: var(--tg-theme-secondary-bg-color); transform: rotateX(0deg); }
+    50% { background: var(--tg-theme-secondary-bg-color); border-color: var(--tg-theme-secondary-bg-color); transform: rotateX(90deg); }
     100% { background: var(--color-absent); border-color: var(--color-absent); transform: rotateX(0deg); }
 }
 
@@ -296,8 +281,8 @@ main {
 
 .key {
     height: var(--key-height);
-    background: var(--bg-secondary);
-    color: var(--text);
+    background: var(--tg-theme-secondary-bg-color);
+    color: var(--tg-theme-text-color);
     border: none;
     border-radius: 8px;
     font-size: clamp(0.75rem, 3.2vw, 1rem);
@@ -338,8 +323,8 @@ main {
 }
 
 .key.ready {
-    background: var(--accent);
-    color: var(--accent-text);
+    background: var(--tg-theme-button-color);
+    color: var(--tg-theme-button-text-color);
     animation: pulse 0.8s ease-in-out infinite;
 }
 
@@ -354,8 +339,8 @@ main {
     top: 60px;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--text);
-    color: var(--bg);
+    background: var(--tg-theme-text-color);
+    color: var(--tg-theme-bg-color);
     padding: 12px 24px;
     border-radius: var(--border-radius);
     font-weight: 600;
@@ -391,7 +376,7 @@ main {
 }
 
 .modal-content {
-    background: var(--section-bg);
+    background: var(--tg-theme-section-bg-color);
     border-radius: var(--border-radius);
     padding: 32px 24px;
     max-width: 420px;
@@ -410,8 +395,8 @@ main {
     height: 32px;
     border: none;
     border-radius: 50%;
-    background: var(--bg-secondary);
-    color: var(--text);
+    background: var(--tg-theme-secondary-bg-color);
+    color: var(--tg-theme-text-color);
     font-size: 1.2rem;
     cursor: pointer;
     display: flex;
@@ -441,15 +426,15 @@ main {
 .modal-content p {
     margin-bottom: 10px;
     font-size: 0.88rem;
-    color: var(--text);
+    color: var(--tg-theme-text-color);
 }
 
 .rules-creator {
     margin-top: 16px;
     padding-top: 12px;
-    border-top: 1px solid var(--bg-secondary);
+    border-top: 1px solid var(--tg-theme-secondary-bg-color);
     font-size: 0.8rem;
-    color: var(--text-hint);
+    color: var(--tg-theme-hint-color);
 }
 
 /* Examples */
@@ -459,7 +444,7 @@ main {
     gap: 12px;
     margin: 16px 0;
     padding: 14px;
-    background: var(--bg-secondary);
+    background: var(--tg-theme-secondary-bg-color);
     border-radius: var(--border-radius);
 }
 
@@ -469,7 +454,7 @@ main {
     gap: 8px;
     flex-wrap: wrap;
     font-size: 0.82rem;
-    color: var(--text);
+    color: var(--tg-theme-text-color);
 }
 
 .example .tile {
@@ -500,7 +485,7 @@ main {
     flex-direction: column;
     align-items: center;
     padding: 8px 4px;
-    background: var(--bg-secondary);
+    background: var(--tg-theme-secondary-bg-color);
     border-radius: 8px;
 }
 
@@ -511,7 +496,7 @@ main {
 
 .stat-label {
     font-size: 0.7rem;
-    color: var(--text-hint);
+    color: var(--tg-theme-hint-color);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     font-weight: 500;
@@ -527,7 +512,7 @@ main {
     letter-spacing: 0.5px;
     margin-bottom: 12px;
     text-transform: uppercase;
-    color: var(--text-hint);
+    color: var(--tg-theme-hint-color);
     font-weight: 500;
 }
 
@@ -543,7 +528,7 @@ main {
     font-weight: 700;
     font-size: 0.85rem;
     text-align: right;
-    color: var(--text);
+    color: var(--tg-theme-text-color);
 }
 
 .bar-fill {
@@ -563,7 +548,7 @@ main {
 }
 
 .bar-fill.highlight {
-    background: var(--accent);
+    background: var(--tg-theme-button-color);
 }
 
 /* Result Modal */
@@ -609,14 +594,14 @@ main {
 .result-tile.absent { background: var(--color-absent); }
 
 .result-info {
-    color: var(--text-hint);
+    color: var(--tg-theme-hint-color);
     margin-bottom: 16px;
     font-size: 0.9rem;
 }
 
 .btn {
-    background: var(--accent);
-    color: var(--accent-text);
+    background: var(--tg-theme-button-color);
+    color: var(--tg-theme-button-text-color);
     border: none;
     border-radius: var(--border-radius);
     padding: 16px 32px;
@@ -648,18 +633,18 @@ main {
 }
 
 .site-footer a {
-    color: var(--text-hint);
+    color: var(--tg-theme-hint-color);
     text-decoration: none;
     font-size: 0.78rem;
     transition: color 0.15s;
 }
 
 .site-footer a:active {
-    color: var(--accent);
+    color: var(--tg-theme-button-color);
 }
 
 .footer-sep {
-    color: var(--text-hint);
+    color: var(--tg-theme-hint-color);
     margin: 0 6px;
 }
 
